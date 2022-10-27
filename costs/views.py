@@ -10,6 +10,7 @@ from costs.serializer import CreateUserSerializer
 from .models import Category
 from django.http import JsonResponse
 from django.db.models import Q
+import json
 
 
 class CreateUserAPIView(CreateAPIView):
@@ -43,3 +44,7 @@ class Categories(APIView):
         root = Category.objects.get(parent=None)
         children = root.build_children()
         return JsonResponse(children, safe=False)
+
+    def post(self, request, format=None):
+        request = request.body.decode('utf-8')
+        request = json.loads(request)
