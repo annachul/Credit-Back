@@ -13,7 +13,7 @@ class Category(models.Model):
         return f'{self.name} - {self.id}'
 
     def build_children(self):
-        result = {"name": self.name}
+        result = {"name": self.name, "id": self.id}
         children = self.children.all()
         if children == None:
             return result
