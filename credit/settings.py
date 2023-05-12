@@ -1,5 +1,6 @@
 from datetime import timedelta
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,7 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)l)(kvq+mr)#m$s6!%^tmp^38o@ly+9v-x5*(v&_j)kl1o3)2*'
+
+env = environ.Env()
+environ.Env.read_env()
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,11 +78,11 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'credit',
+        'NAME': env("DATABASE_NAME"),
 
-        'USER': 'postgres',
+        'USER': env("DATABASE_USER"),
 
-        'PASSWORD': '',
+        'PASSWORD': env("DATABASE_PASS"),
 
         'HOST': 'localhost',
 
