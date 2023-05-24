@@ -156,7 +156,7 @@ class Fileuploader(APIView):
         myfile = request.FILES["myFile"]
 
         df = pd.read_csv(myfile,
-                         sep=";",
+                         sep=",",
                          header=0,
                          usecols=["Name", "Sum", "Date"])
         df1 = pd.DataFrame(df, columns=["Name", "Sum", "Date"])
